@@ -62,9 +62,9 @@
         <label for="image">Insert Image:</label>
         <input type="file" id="fileImage" accept="image/*">
 
-        <button id="addText">Insert Text</button>
-        <button id="addImage">Insert Video</button>
-        <button id="addVideo">Insert Image</button>
+        <button id="insertText">Insert Text</button>
+        <button id="insertVideo">Insert Video</button>
+        <button id="insertImage">Insert Image</button>
         <button id="savePost">Save Post</button>
         <button id="preview">Preview</button>
 
@@ -72,7 +72,7 @@
     </div>
 
     <script>
-        document.getElementById('addText').addEventListener('click', function() {
+        document.getElementById('insertText').addEventListener('click', function() {
             const richTextEditor = document.getElementById('rich-text-editor');
             const content = richTextEditor.innerHTML;
             const blogPreview = document.getElementById('blog-preview');
@@ -80,21 +80,21 @@
             richTextEditor.innerHTML = "";
         });
 
-        document.getElementById('addImage').addEventListener('click', function() {
-            const fileImage = document.getElementById('fileImage').files[0];
-            if (fileImage) {
-                const imageURL = URL.createObjectURL(fileImage);
-                const blogPreview = document.getElementById('blog-preview');
-                blogPreview.innerHTML += <img src="${imageURL}" alt="Image">;
-            }
-        });
-
-        document.getElementById('addVideo').addEventListener('click', function() {
+        document.getElementById('insertVideo').addEventListener('click', function() {
             const fileVideo = document.getElementById('fileVideo').files[0];
             if (fileVideo) {
                 const videoURL = URL.createObjectURL(fileVideo);
                 const blogPreview = document.getElementById('blog-preview');
-                blogPreview.innerHTML += <video controls><source src="${videoURL}" type="${fileVideo.type}">Your browser does not support the video tag.</video>;
+                blogPreview.innerHTML += <video src="${videoURL}" alt="Video">;
+            }
+        });
+
+        document.getElementById('insertImage').addEventListener('click', function() {
+            const fileImage = document.getElementById('fileImage').files[0];
+            if (fileImage) {
+                const imageURL = URL.createObjectURL(fileImage);
+                const blogPreview = document.getElementById('blog-preview');
+                blogPreview.innerHTML += <img controls><source src="${imageURL}" type="${fileImage.type}">Your browser does not support the video tag.</video>;
             }
         });
 
